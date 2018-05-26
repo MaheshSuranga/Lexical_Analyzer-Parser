@@ -1,5 +1,6 @@
 %{                                                                                          
-#include "lex.tab.h"                                                                     
+#include "lex.tab.h"
+int c=0;                                                                     
 extern int line_number;   
 //void yyerror(char *);  
 void yyerror (char const *s)
@@ -14,11 +15,12 @@ letter [a-zA-Z]
 ID {letter}|{letter}*
 digit [0-9]
 NUM {digit}|{digit}*
-COMMENT "/*"({letter}|{digit})*"*/"
+COMMENT "/*"((\*+[^/*])|([^*]))*\**"*/"
 
  
-%%                                                                                          
-[ \t\r]+          /* eat up whitespace */  
+%%
+
+[ \t\r]+          /* eat up whitespace */
 "if"  {printf("IF "); return IF;}
 "else" {printf("ELSE "); return ELSE;}
 "int" {printf("INT "); return INT;}
@@ -26,7 +28,7 @@ COMMENT "/*"({letter}|{digit})*"*/"
 "void" {printf("VOID "); return VOID;}
 "while" {printf("KEYWORD "); return WHILE;}
 
-{COMMENT}  {printf("*****************************COMMENT ");}
+{COMMENT} ;
 {ID} {printf("ID "); return ID;}
 {NUM} {printf("NUMBER "); return NUM;}
 

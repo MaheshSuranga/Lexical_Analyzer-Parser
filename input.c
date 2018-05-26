@@ -1,1 +1,1 @@
-int variable;
+int variable; /*466sjjd ajdoscs*/
