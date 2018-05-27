@@ -76,7 +76,7 @@ SQBO
 program :  declaration_list;
 declaration_list : declaration_list declaration | declaration;
 declaration : var_declaration | fun_declaration;
-var_declaration: type_specifier ID END | type_specifier ID SQBO NUM SQBC ;
+var_declaration: type_specifier ID END | type_specifier ID SQBO NUM SQBC END;
 type_specifier: INT | VOID;
 fun_declaration: type_specifier ID PO params PC compound_stmt;
 params: param_list | VOID;
@@ -90,7 +90,7 @@ expression_stmt: expression END | END;
 selection_stmt: IF PO expression PC statement | IF PO expression PC statement ELSE statement;
 iteration_stmt: WHILE PO expression PC statement;
 return_stmt: RETURN END | RETURN expression END;
-expression: var EQ expression | simple_expression;
+expression: var ASSIGN expression | simple_expression;
 var: ID | ID SQBO expression SQBC;
 simple_expression: additive_expression relop additive_expression | additive_expression;
 relop: GT | LS| GE | LE | EQ | NE;
